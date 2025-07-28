@@ -1,6 +1,8 @@
 'use server'
 
-import { organization } from '@/http/create-organization'
+import { getCurrentOrg } from '@/auth/auth'
+import { createOrganization } from '@/http/create-organization'
+import { updateOrganization } from '@/http/update-organization'
 import { HTTPError } from 'ky'
 import { z } from 'zod'
 
@@ -46,7 +48,9 @@ const organizationSchema = z
     },
   )
 
-export async function organizationAction(data: FormData) {
+export type OrganizationSchama = z.infer<typeof organizationSchema>
+
+export async function createOrganizationAction(data: FormData) {
   const result = organizationSchema.safeParse(Object.fromEntries(data))
 
   if (!result.success) {
@@ -74,7 +78,65 @@ export async function organizationAction(data: FormData) {
   const { name, domain, shouldAttachUserByDomain } = result.data
 
   try {
-    await organization({
+    await createOrganization({
+      name,
+      domain,
+      shouldAttachUserByDomain,
+    })
+  } catch (error) {
+    if (error instanceof HTTPError) {
+      const { message } = await error.response.json()
+
+      return { success: false, message, errors: null }
+    }
+
+    console.error(error)
+
+    return {
+      success: false,
+      message: 'An unexpected error occurred. Please try again later.',
+      errors: null,
+    }
+  }
+
+  return {
+    success: true,
+    message: 'Successfully saved the organization',
+    errors: null,
+  }
+}
+
+export async function updateOrganizationAction(data: FormData) {
+  const currentOrg = await getCurrentOrg()
+  const result = organizationSchema.safeParse(Object.fromEntries(data))
+
+  if (!result.success) {
+    const errors: Record<string, string[]> = {}
+
+    for (const issue of result.error.issues) {
+      const path = issue.path.join('.')
+
+      if (!path) continue
+
+      if (!errors[path]) {
+        errors[path] = []
+      }
+
+      errors[path].push(issue.message)
+    }
+
+    return {
+      success: false,
+      message: null,
+      errors,
+    }
+  }
+
+  const { name, domain, shouldAttachUserByDomain } = result.data
+
+  try {
+    await updateOrganization({
+      org: currentOrg!,
       name,
       domain,
       shouldAttachUserByDomain,
