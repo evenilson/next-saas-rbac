@@ -1,4 +1,10 @@
 import { ChevronsUpDown, PlusCircle } from 'lucide-react'
+import Link from 'next/link'
+
+import { getCurrentOrg } from '@/auth/auth'
+import { getOrganizations } from '@/http/get-organizations'
+
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,10 +14,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from './ui/dropdown-menu'
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
-import Link from 'next/link'
-import { getOrganizations } from '@/http/get-organizations'
-import { getCurrentOrg } from '@/auth/auth'
 
 export async function OrganizationSwitcher() {
   const currentOrg = await getCurrentOrg()

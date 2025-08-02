@@ -1,10 +1,11 @@
 'use server'
 
+import { HTTPError } from 'ky'
+import { z } from 'zod'
+
 import { getCurrentOrg } from '@/auth/auth'
 import { createOrganization } from '@/http/create-organization'
 import { updateOrganization } from '@/http/update-organization'
-import { HTTPError } from 'ky'
-import { z } from 'zod'
 
 const organizationSchema = z
   .object({

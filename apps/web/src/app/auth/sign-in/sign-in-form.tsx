@@ -1,19 +1,20 @@
 'use client'
 
 import { AlertTriangle, Loader2 } from 'lucide-react'
-import { Label } from '@/components/ui/label'
-import { signInWithEmailAndPassword } from './actions'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import Link from 'next/link'
-import { Separator } from '@/components/ui/separator'
 import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 import githubIcon from '@/assets/github-icon.svg'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Separator } from '@/components/ui/separator'
 import { useFormState } from '@/hooks/use-form-state'
-import { useRouter, useSearchParams } from 'next/navigation'
+
 import { signInWithGithub } from '../actions'
+import { signInWithEmailAndPassword } from './actions'
 
 export function SigInForm() {
   const router = useRouter()

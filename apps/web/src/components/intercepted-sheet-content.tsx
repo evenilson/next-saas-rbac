@@ -1,9 +1,11 @@
 'use client'
 import * as SheetPrimitive from '@radix-ui/react-dialog'
-import { SheetOverlay, SheetPortal } from './ui/sheet'
-import { cn } from '@/lib/utils'
 import { XIcon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+
+import { cn } from '@/lib/utils'
+
+import { SheetOverlay, SheetPortal } from './ui/sheet'
 
 export function InterceptedSheetContent({
   className,

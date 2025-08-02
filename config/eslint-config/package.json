@@ -10,7 +10,9 @@
   },
   "devDependencies": {
     "eslint-plugin-simple-import-sort": "^12.1.1",
-    "@saas/prettier": "workspace:*"
+    "@saas/prettier": "workspace:*",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0"
   },
   "prettier": "@saas/prettier",
   "eslintConfig": {

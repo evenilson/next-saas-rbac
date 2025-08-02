@@ -1,16 +1,16 @@
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import { CheckCircle, LogOut } from 'lucide-react'
+import { cookies } from 'next/headers'
+import Link from 'next/link'
+import { redirect } from 'next/navigation'
+
 import { auth, isAuthenticated } from '@/auth/auth'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { acceptInvite } from '@/http/accept-invite'
 import { getInvite } from '@/http/get-invite'
-import { CheckCircle, LogOut } from 'lucide-react'
-import { cookies } from 'next/headers'
-import Link from 'next/link'
-import { redirect } from 'next/navigation'
-
-import dayjs from 'dayjs'
-import relativeTime from 'dayjs/plugin/relativeTime'
 
 dayjs.extend(relativeTime)
 

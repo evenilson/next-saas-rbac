@@ -1,8 +1,10 @@
-import { prisma } from '@/lib/prisma'
 import { hash } from 'bcryptjs'
 import { FastifyInstance } from 'fastify'
 import { ZodTypeProvider } from 'fastify-type-provider-zod'
 import { z } from 'zod'
+
+import { prisma } from '@/lib/prisma'
+
 import { BadRequestError } from '../_errors/bad-request-error'
 
 export async function createAccount(app: FastifyInstance) {
@@ -30,6 +32,7 @@ export async function createAccount(app: FastifyInstance) {
         throw new BadRequestError('User with same e-mail already exists.')
       }
 
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const [_, domain] = email.split('@')
 
       const autoJoinOrganization = await prisma.organization.findFirst({

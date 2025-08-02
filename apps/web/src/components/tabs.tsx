@@ -1,6 +1,7 @@
-import { Button } from './ui/button'
 import { ability, getCurrentOrg } from '@/auth/auth'
+
 import { NavLink } from './nav-link'
+import { Button } from './ui/button'
 
 export async function Tabs() {
   const currentOrg = await getCurrentOrg()

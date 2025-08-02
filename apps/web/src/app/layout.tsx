@@ -1,8 +1,7 @@
-import type { Metadata } from 'next'
 import './globals.css'
-import { ThemeProvider } from 'next-themes'
-import { QueryClientProvider } from '@tanstack/react-query'
-import { queryClient } from '@/lib/react-query'
+
+import type { Metadata } from 'next'
+
 import { Providers } from './providers'
 
 export const metadata: Metadata = {

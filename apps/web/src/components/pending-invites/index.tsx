@@ -1,15 +1,16 @@
 'use client'
-import { Check, UserPlus2, X } from 'lucide-react'
-import { Button } from '../ui/button'
-import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
-
+import { useQuery } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
-import { useQuery } from '@tanstack/react-query'
-import { getPendingInvites } from '@/http/get-pending-invites'
+import { Check, UserPlus2, X } from 'lucide-react'
 import { useState } from 'react'
-import { acceptInviteAction, rejectInviteAction } from './actions'
+
+import { getPendingInvites } from '@/http/get-pending-invites'
 import { queryClient } from '@/lib/react-query'
+
+import { Button } from '../ui/button'
+import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
+import { acceptInviteAction, rejectInviteAction } from './actions'
 
 dayjs.extend(relativeTime)
 

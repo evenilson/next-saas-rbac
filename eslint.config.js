@@ -1,13 +1,18 @@
 import nextConfig from './config/eslint-config/next.js';
 import nodeConfig from './config/eslint-config/node.js';
 import baseConfig from './config/eslint-config/base.js';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // Helper to generate TypeScript config for a package/app
 function makeTsConfig({ name, tsconfigPath, globs = ['**/*.ts', '**/*.tsx'] }) {
   return {
     files: [`${name}/${globs[0]}`, `${name}/${globs[1]}`],
     languageOptions: {
-      parser: require.resolve('@typescript-eslint/parser'),
+      parser: '@typescript-eslint/parser',
       parserOptions: {
         project: tsconfigPath,
         tsconfigRootDir: __dirname,
